@@ -1,0 +1,33 @@
+.container {
+   margin-bottom: -2.2rem;
+}
+
+footer {
+   margin-bottom: 0;
+   padding-bottom: 0;
+}
+
+iframe {
+   width: 300px;
+}
+
+@media(max-width: 768px) {
+   .container {
+      margin-bottom: -1.5rem;
+      /*padding-inline-end: 2rem;*/
+   }
+
+   iframe {
+      width: 100%;
+   }
+
+}
+
+@media(max-width: 576px) {
+   .container {
+      margin-bottom: 0rem;
+   }
+   footer {
+      background-color: #fff;
+   }
+}
