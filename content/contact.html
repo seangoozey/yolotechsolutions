@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width = device-width, initial-scale = 1">
+
+      <title>S&ampS Computer Repair</title>
+
+      <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+      <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+      <link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet" type="text/css">
+   </head>
+   <body>
+      <header>
+         <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="#"><img src="../img/brand.png" height="25px"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                     <a class="nav-link" href="../index.html">Home</span></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="computers.html">Computers</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="services.html">Services</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="about.html">About</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link active" href="#">Contact <span class="sr-only">(current)</a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+      <main role="main" class="container">
+         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+               <h4 id="contact-response">Contact Us</h4>
+               <hr>
+               <form id="contact-form" method="post" action="contact.php" role="form">
+                  <div class="messages"></div>
+                  <div class="controls">
+                     <div class="row">
+                        <div class="col-lg-6">
+                           <div class="form-group">
+                                 <label for="form_name">Firstname *</label>
+                                 <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required"
+                                    data-error="Firstname is required.">
+                                 <div class="help-block with-errors"></div>
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="form-group">
+                                 <label for="form_lastname">Lastname *</label>
+                                 <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required"
+                                    data-error="Lastname is required.">
+                                 <div class="help-block with-errors"></div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-6">
+                           <div class="form-group">
+                                 <label for="form_email">Email *</label>
+                                 <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required"
+                                    data-error="Valid email is required.">
+                                 <div class="help-block with-errors"></div>
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="form-group">
+                                 <label for="form_phone">Phone</label>
+                                 <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="Please enter your phone">
+                                 <div class="help-block with-errors"></div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="form_message">Message *</label>
+                        <textarea id="form_message" name="message" class="form-control" placeholder="Message for me *" rows="4" required="required"
+                           data-error="Please, leave us a message."></textarea>
+                        <div class="help-block with-errors"></div>
+                     </div>
+
+
+                     <button class="btn btn-danger btn-send g-recaptcha" data-sitekey="6LdLdR4hAAAAAJMsK_869hPRkYEUvpgtIe-bTJOE"
+                     data-callback='onRecaptchaCallback'
+                     data-action='submit'>Send Message</button>
+                     <br><br>
+                  </div>
+               </form>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+               <h4>Our Info</h4>
+               <hr>
+               <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                     <table class="table table-hover">
+                        <tr>
+                           <td class="text-right bg-light">
+                              Address:
+                           </td>
+                           <td class="text-left">
+                              1260 Lake Blvd. Ste. #104 <br> Davis, Ca 95616
+                           </td>
+                        </tr>
+                        <tr>
+                           <td class="text-right bg-light">
+                              Hours:
+                           </td>
+                           <td class="text-left">
+                              9:00am - 5:00pm | Monday - Friday
+                           </td>
+                        </tr>
+                        <tr>
+                           <td class="text-right bg-light">
+                              Phone:
+                           </td>
+                           <td class="text-left">
+                              (530) 792-7290
+                           </td>
+                        </tr>
+                        <tr>
+                           <td class="text-right bg-light">
+                              Email:
+                           </td>
+                           <td class="text-left">
+                              <a href="mailto:support@yolotechsolutions.com">support@yolotechsolutions.com</a>
+                           </td>
+                        </tr>
+                     </table>                   
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
+      <footer class="footer bg-light">
+         <div class="container">
+            <p class="text-muted text-center" style="margin-bottom: 0; padding-bottom: 0;">©2022 S&ampS Computer Repair</p>
+         </div>
+      </footer>
+      <script src="../js/jquery-3.4.1.min.js"></script>
+      <script src="../js/bootstrap.min.js"></script>
+      <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdLdR4hAAAAAJMsK_869hPRkYEUvpgtIe-bTJOE"></script>
+      <script src="../js/validator.js"></script>
+      <script src="./contact.js"></script>
+      <script>
+         function onRecaptchaCallback(token) {
+            document.getElementById("contact-form").submit();
+         }
+      </script>
+   </body>
+</html>
