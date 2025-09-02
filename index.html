@@ -1,112 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width = device-width, initial-scale = 1" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S&S Computer Repair - Professional Computer Services</title>
 
-    <title>S&ampS Computer Repair</title>
-
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-
-    <link
-      href="https://fonts.googleapis.com/css?family=EB+Garamond"
-      rel="stylesheet"
-      type="text/css"
-    />
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#"
-          ><img src="./img/brand.png" height="25px"
-        /></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#"
-                >Home <span class="sr-only">(current)</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./content/computers.html">Computers</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./content/services.html">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./content/about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./content/contact.html">Contact</a>
-            </li>
-          </ul>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="./img/brand.png" height="35" alt="S&S Computer Repair">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </nav>
-    </header>
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
-          <img src="./img/logo.png" height="75px" />
-          <h4>Welcome</h4>
-          <hr />
-          <p>
-            S&S is here to provide you with service and support for your home
-            and business needs. We repair all types of computer hardware and
-            software, including desktops, laptops, PC, Macintosh, and Linux as
-            well as gaming consoles and smart phones. We also offer on-site home
-            and business support to get your computer systems running exactly
-            how you need them to. Along with providing repair and support needs,
-            we also build custom, state-of-the-art computer systems to give you
-            what you need.
-          </p>
-          <p>
-            Please come by, give us a call, or send us an
-            <a href="./content/contact.html">e-mail</a> with any questions or
-            requests.
-          </p>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <img src="./img/logo.png" height="80" alt="S&S Computer Repair Logo" class="mb-4">
+                        <h1 class="display-4 fw-bold text-primary mb-4">Professional Computer Repair Services</h1>
+                        <p class="lead mb-4">
+                            S&S Computer Repair provides expert service and support for your home and business needs. 
+                            We repair all types of computer hardware and software, including desktops, laptops, 
+                            PC, Macintosh, and Linux systems.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#services" class="btn btn-primary btn-lg me-3">Our Services</a>
+                            <a href="#contact" class="btn btn-outline-primary btn-lg">Get Quote</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image text-center">
+                        <img src="./img/case-business.jpg" alt="Computer Repair" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-          <iframe
-            class="embed-responsive-item"
-            width="100%"
-            height="300px"
-            frameborder="0"
-            style="border: 1px solid #555"
-            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJq21S-j8ohYAR2s4As2NO8-0&key=AIzaSyA2VB4E-oEYe8AvrwBdbPLUu5gHQDE2cm0"
-            allowfullscreen
-          ></iframe>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-5 fw-bold text-primary mb-3">Our Services</h2>
+                    <p class="lead text-muted">Comprehensive computer repair and support services for residential and business clients</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card h-100">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-laptop fa-3x text-primary"></i>
+                        </div>
+                        <h4>Computer Repair</h4>
+                        <p>Desktop and laptop PC or Mac repair, hardware diagnostics, and replacement services.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card h-100">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-tools fa-3x text-primary"></i>
+                        </div>
+                        <h4>On-Site Service</h4>
+                        <p>Professional on-site support for both residential and business clients.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card h-100">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-wifi fa-3x text-primary"></i>
+                        </div>
+                        <h4>Network Services</h4>
+                        <p>Internet and network setup, repair, and optimization for home and business.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card h-100">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-shield-alt fa-3x text-primary"></i>
+                        </div>
+                        <h4>Virus Removal</h4>
+                        <p>Complete virus and malware removal with system optimization.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card h-100">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-database fa-3x text-primary"></i>
+                        </div>
+                        <h4>Data Recovery</h4>
+                        <p>Data backup, restoration, and recovery services for critical information.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card h-100">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-cogs fa-3x text-primary"></i>
+                        </div>
+                        <h4>Custom Builds</h4>
+                        <p>Custom-built, state-of-the-art computer systems tailored to your needs.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="service-motto">
+                        <h5 class="text-primary mb-3">"If it has an on/off switch, we can repair it."</h5>
+                        <p class="text-muted">If you need to know how to make it work, we can show you.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </main>
-    <footer class="footer">
-      <div class="container">
-        <p
-          class="text-muted text-center"
-          style="margin-bottom: 0; padding-bottom: 0"
-        >
-          ©2022 S&ampS Computer Repair
-        </p>
-      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="./img/watercolor.png" alt="About S&S Computer Repair" class="img-fluid h-100">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold text-primary mb-4">About S&S Computer Repair</h2>
+                    <p class="lead mb-4">
+                        Owned and operated by Sean Goozey, a lifelong Yolo County resident with 20+ years of computer repair experience. We provide reliable, affordable, and local computer solutions for both homes and businesses—keeping your systems running smoothly with service you can trust.
+                    </p>
+                    <p class="mb-4">
+                        We provide reliable, affordable, and local computer solutions for both homes and businesses—keeping your systems running smoothly with service you can trust.
+                    </p>
+                    <div class="about-features">
+                        <h4 class="mb-4">Why Choose Us</h4>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="feature-item">
+                                    <i class="fas fa-check me-2"></i>
+                                    <span>20+ Years of Experience</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="feature-item">
+                                    <i class="fas fa-check me-2"></i>
+                                    <span>Local & Trusted Business</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="feature-item">
+                                    <i class="fas fa-check me-2"></i>
+                                    <span>Fair, Transparent Pricing</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="feature-item">
+                                    <i class="fas fa-check me-2"></i>
+                                    <span>Quality Service, Every Time</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-5 fw-bold text-primary mb-3">Contact Us</h2>
+                    <p class="lead text-muted">Get in touch for a free consultation or to schedule your repair</p>
+                </div>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <div class="contact-form">
+                        <h4 class="mb-4">Send us a Message</h4>
+                        <form id="contact-form" method="post" action="content/contact.php">
+                            <div class="row g-3">
+                                                                 <div class="col-md-6">
+                                     <input type="text" class="form-control" name="name" placeholder="First Name *" required minlength="2" maxlength="50" pattern="[a-zA-Z\s\-\.]+" title="Please enter a valid name (letters, spaces, hyphens, and periods only)">
+                                 </div>
+                                 <div class="col-md-6">
+                                     <input type="text" class="form-control" name="surname" placeholder="Last Name *" required minlength="2" maxlength="50" pattern="[a-zA-Z\s\-\.]+" title="Please enter a valid name (letters, spaces, hyphens, and periods only)">
+                                 </div>
+                                 <div class="col-md-6">
+                                     <input type="email" class="form-control" name="email" placeholder="Email *" required>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <input type="tel" class="form-control" name="phone" placeholder="Phone" pattern="[\+]?[1-9][\d\s\-\(\)]{9,15}" title="Please enter a valid phone number">
+                                 </div>
+                                 <div class="col-12">
+                                     <textarea class="form-control" name="message" rows="5" placeholder="Message *" required minlength="10" maxlength="1000" title="Message must be between 10 and 1000 characters"></textarea>
+                                 </div>
+                                <div class="col-12">
+                                    <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-info">
+                        <h4 class="mb-4">Business Information</h4>
+                        <div class="info-item mb-3">
+                            <i class="fas fa-map-marker-alt text-primary me-3"></i>
+                            <div>
+                                <strong>Address:</strong><br>
+                                1260 Lake Blvd. Ste. #104<br>
+                                Davis, CA 95616
+                            </div>
+                        </div>
+                        <div class="info-item mb-3">
+                            <i class="fas fa-clock text-primary me-3"></i>
+                            <div>
+                                <strong>Hours:</strong><br>
+                                9:00 AM - 5:00 PM<br>
+                                Monday - Friday
+                            </div>
+                        </div>
+                        <div class="info-item mb-3">
+                            <i class="fas fa-phone text-primary me-3"></i>
+                            <div>
+                                <strong>Phone:</strong><br>
+                                <a href="tel:+15307927290" class="text-decoration-none">(530) 792-7290</a>
+                            </div>
+                        </div>
+                        <div class="info-item mb-4">
+                            <i class="fas fa-envelope text-primary me-3"></i>
+                            <div>
+                                <strong>Email:</strong><br>
+                                <a href="mailto:support@yolotechsolutions.com" class="text-decoration-none">support@yolotechsolutions.com</a>
+                            </div>
+                        </div>
+                        <div class="map-container">
+                            <iframe
+                                class="w-100 rounded shadow"
+                                height="250"
+                                frameborder="0"
+                                src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJq21S-j8ohYAR2s4As2NO8-0&key=AIzaSyBxzRNHsMryyVkyIyYydbSdiVolOUjT1cQ"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; <span id="current-year"></span> S&S Computer Repair. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                     <div class="social-links">
+                         <a href="https://nextdoor.com/pages/s-s-computer-repair-davis-ca/" target="_blank" rel="noopener noreferrer" class="text-white me-3" title="Visit us on Nextdoor">
+                             <i class="fas fa-home"></i>
+                         </a>
+                         <a href="https://share.google/H3StF98M2rBCG4ACl" target="_blank" rel="noopener noreferrer" class="text-white me-3" title="Find us on Google">
+                             <i class="fab fa-google"></i>
+                         </a>
+                     </div>
+                 </div>
+            </div>
+        </div>
     </footer>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
-    <script src="js/bootstrap.min.js"></script>
-  </body>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GLTF Loader -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <!-- Google reCAPTCHA Enterprise v3 -->
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Leg-rorAAAAAHmNOisI0o5uQyx4YN1dDrSutJDr"></script>
+    <!-- Custom JS -->
+    <script type="module" src="js/main.js"></script>
+    <!-- Three.js Effect -->
+    <script src="js/three-effect.js"></script>
+</body>
 </html>
