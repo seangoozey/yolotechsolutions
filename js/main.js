@@ -215,8 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
             grecaptcha.enterprise.ready(function() {
                 grecaptcha.enterprise.execute('6Leg-rorAAAAAHmNOisI0o5uQyx4YN1dDrSutJDr', {action: 'contact_form'})
                 .then(function(token) {
-                    console.log('reCAPTCHA token received:', token);
-                    
                     // Set the token in the hidden input
                     document.getElementById('recaptcha_token').value = token;
                     
@@ -233,16 +231,35 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                     
-                    // Submit the final form data via AJAX
-                    fetch('content/contact.php', {
-                        method: 'POST',
-                        body: finalFormData
-                    })
+                                         // Submit the final form data via AJAX
+                     fetch('content/contact-simple.php', {
+                         method: 'POST',
+                         body: finalFormData
+                     })
                     .then(response => {
+                        //console.log('Response status:', response.status, response.statusText);
+                        
                         if (!response.ok) {
-                            throw new Error('Network response was not ok');
+                            // Handle specific status codes
+                            if (response.status === 409) {
+                                throw new Error('Server conflict - please try again in a few minutes');
+                            } else if (response.status === 500) {
+                                throw new Error('Server error - please try again later');
+                            } else if (response.status === 403) {
+                                throw new Error('Access denied - please check your connection');
+                            } else {
+                                throw new Error(`Server error (${response.status}): ${response.statusText}`);
+                            }
                         }
-                        return response.json();
+                        
+                        return response.text().then(text => {
+                            try {
+                                return JSON.parse(text);
+                            } catch (e) {
+                                console.error('Response is not valid JSON:', text);
+                                throw new Error('Server returned invalid response format');
+                            }
+                        });
                     })
                     .then(data => {
                         if (data.type === 'success') {
@@ -453,6 +470,4 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
     }
-
-    console.log('S&S Computer Repair website initialized successfully!');
 });

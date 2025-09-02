@@ -85,10 +85,6 @@ class WireframeEffect {
                 this.wireframeModel.scale.set(15, 15, 15);
                 this.wireframeModel.position.set(20, 0, 0);
                 
-                console.log('GLTF model loaded successfully');
-                console.log('Model structure:', this.wireframeModel);
-;
-                
                 this.wireframeModel.traverse((child) => {
                    
                     // Hide the original LineSegments
@@ -100,7 +96,7 @@ class WireframeEffect {
                 resolve();
             },
             (progress) => {
-                console.log('Loading progress:', (progress.loaded / progress.total * 100) + '%');
+                // Loading progress tracking removed
             },
             (error) => {
                 console.error('Error loading GLTF model:', error);
@@ -258,8 +254,6 @@ class WireframeEffect {
         
         // Update fog with new distance
         this.scene.fog = new THREE.Fog(0x000000, 1, fogDistance);
-        
-        console.log(`Screen width: ${windowWidth}px, Fog distance: ${fogDistance}`);
     }
     
     onWindowResize() {
