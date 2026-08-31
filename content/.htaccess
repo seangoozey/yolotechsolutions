@@ -1,0 +1,5 @@
+# Sensitive files - never serve these directly.
+# config.php holds the reCAPTCHA secret; contact.php still includes it normally.
+<FilesMatch "^(config(\.sample)?\.php|error_log)$">
+    Require all denied
+</FilesMatch>

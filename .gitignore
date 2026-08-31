@@ -6,7 +6,8 @@ content/config.php
 # Local source assets kept out of the repo
 img/watercolor_large.png
 
-# Server Files
-.htaccess
+# Server-managed files at the webroot only (Bluehost maintains the root
+# .htaccess). content/.htaccess is ours and IS tracked deliberately.
+/.htaccess
 .ini
 .well-known
