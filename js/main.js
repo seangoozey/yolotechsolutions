@@ -130,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
     
     if (contactForm) {
+        const RECAPTCHA_SITE_KEY = '6LeQlJ8tAAAAAOcnhVKBMx40i7nhgVSOFSmit0LK';
+
         // Real-time validation
         const inputs = contactForm.querySelectorAll('input, textarea');
         inputs.forEach(input => {
@@ -216,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Execute reCAPTCHA
             grecaptcha.enterprise.ready(function() {
-                grecaptcha.enterprise.execute('6LeQlJ8tAAAAAOcnhVKBMx40i7nhgVSOFSmit0LK', {action: 'contact_form'})
+                grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, {action: 'contact_form'})
                 .then(function(token) {
                     // Set the token in the hidden input
                     document.getElementById('recaptcha_token').value = token;
@@ -234,54 +236,76 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                     
-                                         // Submit the final form data via AJAX
-                     fetch('content/contact.php', {
-                         method: 'POST',
-                         body: finalFormData
-                     })
-                    .then(response => {
-                        //console.log('Response status:', response.status, response.statusText);
-                        
-                        if (!response.ok) {
-                            // Handle specific status codes
-                            if (response.status === 409) {
-                                throw new Error('Server conflict - please try again in a few minutes');
-                            } else if (response.status === 500) {
-                                throw new Error('Server error - please try again later');
-                            } else if (response.status === 403) {
-                                throw new Error('Access denied - please check your connection');
+                    // Submit the final form data via AJAX.
+                    // The hosting WAF challenges cookie-less POSTs with HTTP 409 and a
+                    // JavaScript cookie challenge, which a fetch() response never
+                    // executes - so detect it, set the cookie, and retry once with a
+                    // fresh token.
+                    const postFormData = (formData, allowChallengeRetry) =>
+                        fetch('content/contact.php', { method: 'POST', body: formData })
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.text().then(text => {
+                                        try {
+                                            return JSON.parse(text);
+                                        } catch (e) {
+                                            console.error('Response is not valid JSON:', text);
+                                            throw new Error('Server returned invalid response format');
+                                        }
+                                    });
+                                }
+
+                                if (response.status === 409 && allowChallengeRetry) {
+                                    return response.text().then(text => {
+                                        const match = text.match(/document\.cookie\s*=\s*"([^"]*)"/);
+                                        if (!match) {
+                                            throw new Error('Server conflict - please try again in a few minutes');
+                                        }
+                                        document.cookie = match[1] + '; path=/';
+                                        return grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, { action: 'contact_form' })
+                                            .then(freshToken => {
+                                                const retryData = new FormData();
+                                                retryData.append('recaptcha_token', freshToken);
+                                                for (let [key, value] of sanitizedData.entries()) {
+                                                    if (key !== 'recaptcha_token') {
+                                                        retryData.append(key, value);
+                                                    }
+                                                }
+                                                return postFormData(retryData, false);
+                                            });
+                                    });
+                                }
+
+                                if (response.status === 409) {
+                                    throw new Error('Server conflict - please try again in a few minutes');
+                                } else if (response.status === 500) {
+                                    throw new Error('Server error - please try again later');
+                                } else if (response.status === 403) {
+                                    throw new Error('Access denied - please check your connection');
+                                } else {
+                                    throw new Error(`Server error (${response.status}): ${response.statusText}`);
+                                }
+                            });
+
+                    postFormData(finalFormData, true)
+                        .then(data => {
+                            if (data.type === 'success') {
+                                showNotification(data.message, 'success');
+                                contactForm.reset();
                             } else {
-                                throw new Error(`Server error (${response.status}): ${response.statusText}`);
+                                showNotification(data.message, 'danger');
                             }
-                        }
-                        
-                        return response.text().then(text => {
-                            try {
-                                return JSON.parse(text);
-                            } catch (e) {
-                                console.error('Response is not valid JSON:', text);
-                                throw new Error('Server returned invalid response format');
-                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            showNotification('There was an error sending your message. Please try again.', 'danger');
+                        })
+                        .finally(() => {
+                            // Reset button
+                            submitButton.textContent = originalText;
+                            submitButton.disabled = false;
+                            submitButton.classList.remove('loading');
                         });
-                    })
-                    .then(data => {
-                        if (data.type === 'success') {
-                            showNotification(data.message, 'success');
-                            contactForm.reset();
-                        } else {
-                            showNotification(data.message, 'danger');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        showNotification('There was an error sending your message. Please try again.', 'danger');
-                    })
-                    .finally(() => {
-                        // Reset button
-                        submitButton.textContent = originalText;
-                        submitButton.disabled = false;
-                        submitButton.classList.remove('loading');
-                    });
                 })
                 .catch(function(error) {
                     console.error('reCAPTCHA error:', error);
