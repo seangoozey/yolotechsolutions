@@ -12,6 +12,7 @@ class WireframeEffect {
         this.isInitialized = false;
         this.wireframeModel = null;
         this.fallbackWireframe = null;
+        this.reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         
         this.init();
     }
@@ -51,9 +52,12 @@ class WireframeEffect {
         
         // Add lights
         this.addLights();
-        
-        // Start animation
-        this.animate();
+
+        // Respect prefers-reduced-motion: render a single static frame
+        // (also rendered once the model loads) instead of animating
+        if (!this.reducedMotion) {
+            this.animate();
+        }
         
         // Handle window resize
         window.addEventListener('resize', () => {
@@ -92,7 +96,12 @@ class WireframeEffect {
                 });
                 
                 this.scene.add(this.wireframeModel);
-                
+
+                // Draw the loaded model when reduced motion skips the animation loop
+                if (this.reducedMotion && this.renderer) {
+                    this.renderer.render(this.scene, this.camera);
+                }
+
                 resolve();
             },
             (progress) => {

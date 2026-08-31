@@ -78,12 +78,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function validatePhone(phone) {
         if (!phone) return true; // Phone is optional
-        const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-        return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+        // 10-15 digits total, optional leading + (matches the server check)
+        const phoneRegex = /^\+?[0-9]{10,15}$/;
+        return phoneRegex.test(phone.replace(/[\s\-\(\)\.]/g, ''));
     }
     
+    // Trim only - the server emails the message as plain text, so stripping
+    // characters like < and > here would silently mangle real messages.
     function sanitizeInput(input) {
-        return input.replace(/[<>]/g, '').trim();
+        return input.trim();
     }
     
     function validateForm(formData) {
@@ -232,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     
                                          // Submit the final form data via AJAX
-                     fetch('content/contact-simple.php', {
+                     fetch('content/contact.php', {
                          method: 'POST',
                          body: finalFormData
                      })
@@ -418,25 +421,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Contact form validation enhancement
-    const formInputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
-    formInputs.forEach(input => {
-        input.addEventListener('blur', function() {
-            if (this.hasAttribute('required') && !this.value.trim()) {
-                this.classList.add('is-invalid');
-            } else {
-                this.classList.remove('is-invalid');
-                this.classList.add('is-valid');
-            }
-        });
-        
-        input.addEventListener('input', function() {
-            if (this.classList.contains('is-invalid')) {
-                this.classList.remove('is-invalid');
-            }
-        });
-    });
-    
+    // Contact form validation is handled by the blur listeners attached above.
+
     // Initialize tooltips if Bootstrap is available
     if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
         const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));

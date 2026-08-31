@@ -1,1 +1,7 @@
-*.md
+/docs
+
+# reCAPTCHA secret - never commit (see content/config.sample.php)
+content/config.php
+
+# Local source assets kept out of the repo
+img/watercolor_large.png
