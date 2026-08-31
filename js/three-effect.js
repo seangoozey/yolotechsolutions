@@ -13,6 +13,7 @@ class WireframeEffect {
         this.wireframeModel = null;
         this.fallbackWireframe = null;
         this.reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.isPaused = false;
         
         this.init();
     }
@@ -241,7 +242,24 @@ class WireframeEffect {
         
         this.renderer.render(this.scene, this.camera);
     }
-    
+
+    // Stop the render loop while the hero is off-screen (saves GPU/battery)
+    pause() {
+        this.isPaused = true;
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+    }
+
+    resume() {
+        if (!this.isPaused || this.reducedMotion) {
+            return;
+        }
+        this.isPaused = false;
+        this.animate();
+    }
+
     updateFog() {
         if (!this.scene) return;
         
@@ -326,5 +344,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Store reference for cleanup
         window.wireframeEffect = wireframeEffect;
+
+        // Pause the render loop whenever the hero scrolls out of view
+        if ('IntersectionObserver' in window) {
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        wireframeEffect.resume();
+                    } else {
+                        wireframeEffect.pause();
+                    }
+                });
+            }, { threshold: 0 });
+            heroObserver.observe(heroSection);
+        }
     }
 });
