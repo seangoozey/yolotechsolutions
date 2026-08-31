@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Execute reCAPTCHA
             grecaptcha.enterprise.ready(function() {
-                grecaptcha.enterprise.execute('6Leg-rorAAAAAHmNOisI0o5uQyx4YN1dDrSutJDr', {action: 'contact_form'})
+                grecaptcha.enterprise.execute('6LeQlJ8tAAAAAOcnhVKBMx40i7nhgVSOFSmit0LK', {action: 'contact_form'})
                 .then(function(token) {
                     // Set the token in the hidden input
                     document.getElementById('recaptcha_token').value = token;
