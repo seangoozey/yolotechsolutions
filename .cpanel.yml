@@ -1,0 +1,33 @@
+---
+# cPanel Git Version Control deploy script.
+# Copies the site from the cPanel repository clone into public_html.
+#
+# IMPORTANT: fix the USERNAME in DEPLOYPATH below to your cPanel account's
+# home directory (shown in cPanel under General Information, or run `echo $HOME`
+# in cPanel Terminal) before this file is committed and pushed.
+#
+# content/config.php is intentionally NOT deployed: it is gitignored and lives
+# only on the server. It must be uploaded manually if it is ever deleted.
+# The root .htaccess is also intentionally untouched - Bluehost maintains its
+# own security rules there.
+
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/yolotech/public_html
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp -R css $DEPLOYPATH
+    - /bin/cp -R js $DEPLOYPATH
+    - /bin/cp -R img $DEPLOYPATH
+    - /bin/cp content/contact.php $DEPLOYPATH/content
+    - /bin/cp content/.htaccess $DEPLOYPATH/content
+    - /bin/cp content/config.sample.php $DEPLOYPATH/content
+    # Remove the retired duplicate handler if it still exists on the server
+    - if [ -f $DEPLOYPATH/content/contact-simple.php ]; then /bin/rm $DEPLOYPATH/content/contact-simple.php; fi
+    # Webroot icons and manifest
+    - /bin/cp favicon.ico $DEPLOYPATH
+    - /bin/cp favicon-16x16.png $DEPLOYPATH
+    - /bin/cp favicon-32x32.png $DEPLOYPATH
+    - /bin/cp apple-touch-icon.png $DEPLOYPATH
+    - /bin/cp android-chrome-192x192.png $DEPLOYPATH
+    - /bin/cp android-chrome-512x512.png $DEPLOYPATH
+    - /bin/cp site.webmanifest $DEPLOYPATH
